@@ -5,7 +5,7 @@ export default function Teask(props) {
     <>
       <div className=" rounded-sm border ps-1 border-cyan-500 border-l-18 mb-2">
         <div>
-          <div class="flex items-center">
+          <div class="flex items-baseline justify-baseline ">
             <input
               id="link-checkbox"
               type="checkbox"
@@ -20,7 +20,7 @@ export default function Teask(props) {
             </label>
           </div>
         </div>
-        <p className=" md:text-clip overflow-hidden">{props.Description}</p>
+        <p className=" text-sm text-gray-400">{props.Description}</p>
       </div>
 
       {/* <Status></Status> */}
