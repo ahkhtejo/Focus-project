@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Complete React Setup",
+    "desc": "Finish installing Tailwind and setting up project structure",
+    "dueDate": "2025-04-24T18:00"
+  },
+  {
+    "id": 2,
+    "name": "Design Task Layout",
+    "desc": "Create 3-column layout for task + timer using Tailwind",
+    "dueDate": "2025-04-25T10:00"
+  },
+  {
+    "id": 3,
+    "name": "Create Timer Component",
+    "desc": "Build countdown timer with start/pause/reset buttons",
+    "dueDate": "2025-04-25T14:00"
+  },
+  {
+    "id": 4,
+    "name": "Connect Google Fonts",
+    "desc": "Apply Poppins font globally via Tailwind config",
+    "dueDate": "2025-04-24T20:00"
+  },
+  {
+    "id": 5,
+    "name": "Build Task Input UI",
+    "desc": "Add input field + button to add new tasks",
+    "dueDate": "2025-04-26T09:30"
+  },
+  {
+    "id": 6,
+    "name": "Test App Responsiveness",
+    "desc": "Make sure layout looks good on mobile",
+    "dueDate": "2025-04-26T16:00"
+  }
+]
