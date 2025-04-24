@@ -3,7 +3,7 @@ import React from "react";
 export default function Teask(props) {
   return (
     <>
-      <div className=" rounded-sm border ps-1 border-cyan-500 border-l-18 mb-2">
+      <div className=" rounded-sm border ps-1 border-cyan-500 hover:bg-blue-700 border-l-18 mb-2">
         <div>
           <div class="flex items-baseline justify-baseline ">
             <input
