@@ -1,28 +1,40 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-export default function SoundPlayer(props) {
-  var audioRef = useRef(new Audio(props.sound));
-  console.log("SoundPlayer", props.sound);
+export default function SoundPlayer({ sound }) {
+  const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    // Create the audio object after component mounts
+    setIsPlaying(false);
+    audioRef.current = new Audio(sound);
+    audioRef.current.loop = false;
+
+    return () => {
+      // Clean up on unmount
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, [sound]);
 
   const playPause = () => {
     const audio = audioRef.current;
+    if (!audio) return;
+
     if (!isPlaying) {
-      audio.loop = false;
-      audio.play();
-      setIsPlaying(true);
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((e) => {
+          console.error("Error playing audio:", e);
+        });
     } else {
       audio.pause();
       setIsPlaying(false);
     }
   };
-
-  // const stopAudio = () => {
-  //   const audio = audioRef.current;
-  //   audio.pause();
-  //   audio.currentTime = 0; // Reset to beginning
-  //   setIsPlaying(false);
-  // };
 
   return (
     <div>

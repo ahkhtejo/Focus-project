@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SoundPlayer from "../soundPlayer/soundPlayer";
-//import sound from "../../assets/sound/nature-ambience-323729.mp3";
-
+import { StoreItem, GetItemFromStore } from "../../utils/db/localStorig";
+//TODO : store the ayah in the local storge for the users
+//TODO : store the task list
 async function GetAyahAR(id) {
   const response = await axios.get(
     `https://api.alquran.cloud/v1/ayah/${id}/ar.asad`
@@ -38,15 +39,18 @@ function Ayah() {
     console.log("ayahNo is", ayahNo);
     setayahNo(ayahNo - 1);
   }
+
   useEffect(() => {
     async function fetchAyah() {
       setIsLoading(true);
+
       const dataAR = await GetAyahAR(ayahNo);
       const dateEN = await GetAyahEN(ayahNo);
       const ayahsound = GetAyahSound(ayahNo);
       setAyah(dataAR);
       setAyahEN(dateEN);
       setsound(ayahsound);
+      //StoreItem({ item: ayahNo });
       setIsLoading(false);
     }
 
