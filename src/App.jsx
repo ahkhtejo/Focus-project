@@ -3,6 +3,7 @@ import Teask from "./Component/task/teask";
 import tasks from "./api/data/data.json";
 import Timer from "./Component/timer/timer";
 import SoundPlayer from "./Component/soundPlayer/soundPlayer";
+import Ayah from "./Component/Ayah/Ayah";
 
 function App() {
   console.log(tasks);
@@ -25,6 +26,7 @@ function App() {
           {/* Put your timer component or content here */}
           <div className="text-center font-stretch-95% text-6xl">
             <Timer />
+            <Ayah />
             <SoundPlayer />
           </div>
         </div>
