@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
-import sound from "../../assets/sound/nature-ambience-323729.mp3";
 
-export default function SoundPlayer() {
-  const audioRef = useRef(new Audio(sound));
+export default function SoundPlayer(props) {
+  var audioRef = useRef(new Audio(props.sound));
+  console.log("SoundPlayer", props.sound);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playPause = () => {
