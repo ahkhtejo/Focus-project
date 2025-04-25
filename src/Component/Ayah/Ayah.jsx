@@ -11,7 +11,7 @@ async function GetAyahAR(id) {
   return response.data.data; // this will return just the Ayah object
 }
 
-function GetAyahSound(Id) {
+function GetAyahSoundURL(Id) {
   const response = `https://cdn.islamic.network/quran/audio/64/ar.alafasy/${Id}.mp3`;
   return response;
 }
@@ -25,7 +25,12 @@ async function GetAyahEN(id) {
 
 function Ayah() {
   const [isLoading, setIsLoading] = useState(true);
-  const [ayahNo, setayahNo] = useState(1);
+
+  const [ayahNo, setayahNo] = useState(() => {
+    const saved = GetItemFromStore();
+    return saved ? Number(saved) : 1;
+  });
+
   const [ayah, setAyah] = useState(null);
   const [ayahEN, setAyahEN] = useState(null);
   const [sound, setsound] = useState("");
@@ -44,13 +49,18 @@ function Ayah() {
     async function fetchAyah() {
       setIsLoading(true);
 
+      // setayahNo(Number(IteminDB));
+      // console.log("ayahNo", Number(ayahNo));
+
       const dataAR = await GetAyahAR(ayahNo);
       const dateEN = await GetAyahEN(ayahNo);
-      const ayahsound = GetAyahSound(ayahNo);
+      const ayahsound = GetAyahSoundURL(ayahNo);
       setAyah(dataAR);
       setAyahEN(dateEN);
       setsound(ayahsound);
-      //StoreItem({ item: ayahNo });
+
+      StoreItem({ item: ayahNo });
+
       setIsLoading(false);
     }
 
