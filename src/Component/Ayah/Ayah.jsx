@@ -1,33 +1,14 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SoundPlayer from "../soundPlayer/soundPlayer";
-import { StoreItem, GetItemFromStore } from "../../utils/db/localStorig";
-//TODO : store the ayah in the local storge for the users
-//TODO : store the task list
-async function GetAyahAR(id) {
-  const response = await axios.get(
-    `https://api.alquran.cloud/v1/ayah/${id}/ar.asad`
-  );
-  return response.data.data; // this will return just the Ayah object
-}
-
-function GetAyahSoundURL(Id) {
-  const response = `https://cdn.islamic.network/quran/audio/64/ar.alafasy/${Id}.mp3`;
-  return response;
-}
-
-async function GetAyahEN(id) {
-  const response = await axios.get(
-    `https://api.alquran.cloud/v1/ayah/${id}/en.asad`
-  );
-  return response.data.data; // this will return just the Ayah object
-}
+import { StoreItem, GetItemFromStorage } from "../../utils/db/localStorig";
+import { GetAyahSoundURL, GetAyahAR, GetAyahEN } from "../../utils/api/https";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Ayah() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [ayahNo, setayahNo] = useState(() => {
-    const saved = GetItemFromStore();
+    const saved = GetItemFromStorage();
     return saved ? Number(saved) : 1;
   });
 
@@ -36,22 +17,16 @@ function Ayah() {
   const [sound, setsound] = useState("");
 
   function GetNextAyha() {
-    console.log("ayahNo is", ayahNo);
     setayahNo(ayahNo + 1);
   }
 
   function GetPreviousAyha() {
-    console.log("ayahNo is", ayahNo);
     setayahNo(ayahNo - 1);
   }
 
   useEffect(() => {
     async function fetchAyah() {
       setIsLoading(true);
-
-      // setayahNo(Number(IteminDB));
-      // console.log("ayahNo", Number(ayahNo));
-
       const dataAR = await GetAyahAR(ayahNo);
       const dateEN = await GetAyahEN(ayahNo);
       const ayahsound = GetAyahSoundURL(ayahNo);
@@ -88,7 +63,12 @@ function Ayah() {
       >
         Next
       </button>
-
+      {/* <FontAwesomeIcon
+        icon="fa-solid fa-circle-chevron-right"
+        beatFade
+        style={{ color: "#63E6BE" }}
+      /> */}
+      {/* <FontAwesomeIcon icon={faBookQuran} beatFade /> */}
       <button
         onClick={GetPreviousAyha}
         className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"

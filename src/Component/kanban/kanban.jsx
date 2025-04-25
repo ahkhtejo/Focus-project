@@ -1,7 +1,6 @@
 import React from "react";
 
-function kanban(props) {
-  console.log(props);
+function kanban() {
   return <></>;
 }
 
