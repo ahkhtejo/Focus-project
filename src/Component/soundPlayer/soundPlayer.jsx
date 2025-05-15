@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import play from "../../assets/icon/headset.svg";
+import pause from "../../assets/icon/pause.svg";
 export default function SoundPlayer({ sound }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -38,11 +39,12 @@ export default function SoundPlayer({ sound }) {
 
   return (
     <div>
-      <button
-        onClick={playPause}
-        className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-      >
-        {isPlaying ? "Pause" : "Play"}
+      <button onClick={playPause}>
+        {isPlaying ? (
+          <img className="size-6" src={pause} alt="Next" />
+        ) : (
+          <img className="size-6" src={play} alt="Next" />
+        )}
       </button>
     </div>
   );

@@ -3,6 +3,8 @@ import SoundPlayer from "../soundPlayer/soundPlayer";
 import { StoreItem, GetItemFromStorage } from "../../utils/db/localStorig";
 import { GetAyahSoundURL, GetAyahAR, GetAyahEN } from "../../utils/api/https";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import next from "../../assets/icon/next.svg";
+import back from "../../assets/icon/back.svg";
 
 function Ayah() {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,29 +54,30 @@ function Ayah() {
           {isLoading ? "Loading..." : ayah?.text || "No Ayah found"}
         </p>
         <br />
-        <SoundPlayer sound={sound} />
-        <p className=" mt-6 text-[10px] text-gray-400">
+
+        <p className=" mt-6 text-[16px] text-gray-300">
           {isLoading ? "Loading..." : ayahEN?.text || "No Ayah found"}
         </p>
       </div>
-      <button
-        onClick={GetNextAyha}
-        className="text-white bg-cyan-800 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-      >
-        Next
-      </button>
-      {/* <FontAwesomeIcon
-        icon="fa-solid fa-circle-chevron-right"
-        beatFade
-        style={{ color: "#63E6BE" }}
-      /> */}
-      {/* <FontAwesomeIcon icon={faBookQuran} beatFade /> */}
-      <button
-        onClick={GetPreviousAyha}
-        className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-      >
-        Back
-      </button>
+      <div className="flex items-center justify-center space-x-4 mt-4">
+        <button
+          onClick={GetNextAyha}
+          className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+        >
+          <img className="size-6" src={back} alt="Back" />
+        </button>
+
+        <div className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+          <SoundPlayer sound={sound} />
+        </div>
+
+        <button
+          onClick={GetPreviousAyha}
+          className="text-white bg-cyan-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+        >
+          <img className="size-6" src={next} alt="Next" />
+        </button>
+      </div>
     </>
   );
 }

@@ -39,7 +39,7 @@ export default function Timer() {
 
   return (
     <>
-      <div className=" font-mono text-center ">{formatTime()}</div>
+      <div className=" font-mono text-center text-xl ">{formatTime()}</div>
       <p className="font-mono text-center text-sm text-gray-400 mt-2">
         {formatDate()}
       </p>
